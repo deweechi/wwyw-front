@@ -21,6 +21,7 @@ function checkMe(me) {
 
 
 const Nav = () => (
+  
   <User>
     {({ data: { me } }) => (
       <NavStyles>
@@ -61,6 +62,7 @@ const Nav = () => (
       </NavStyles>
     )}
   </User>
+     
 );
 
 export default Nav;

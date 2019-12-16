@@ -28,7 +28,7 @@ const Center = styled.div`
 
 const ItemsList = styled.div`
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     
     grid-gap: 40px;
     max-width: ${props => props.theme.maxWidth};
@@ -43,8 +43,8 @@ class Items extends Component {
         return (
             <Center>
             <div>
-                <p>Handmade items for sale</p>
-                <Pagination page={this.props.page} />
+                <p>All items hand turned on a lathe in the USA! Items may be similar but they are all unique. That means every item is a limited quantity of 1!</p>
+                
                 <Query query={ALL_ITEMS_QUERY} 
                 fetchPolicy="network-only" 
                 variables={{

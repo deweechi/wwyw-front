@@ -42,7 +42,7 @@ const Logo = styled.h1`
 
 const StyledHeader = styled.header`
     .bar {
-        border-bottom: 10px solid ${props => props.theme.black};
+        border-bottom: 5px solid ${props => props.theme.black};
         display: grid;
         grid-template-columns: auto 1fr;
         justify-content: space-between;
@@ -58,8 +58,15 @@ const StyledHeader = styled.header`
         border-bottom: 1px solid ${props => props.theme.lightGrey};
     }
 `;
+const Sticky = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+`;
 
 const Header = () => (
+    
+
     <StyledHeader>
     <div className="bar">
         <Logo><Link href="/"><a>What Wood You Wish?</a></Link></Logo>
@@ -73,5 +80,6 @@ const Header = () => (
 <Cart />
 
     </StyledHeader>
+    
 )
 export default Header;
