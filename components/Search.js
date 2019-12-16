@@ -8,7 +8,7 @@ import { DropDown, DropDownItem, SearchStyles } from './styles/DropDown';
 
 const SEARCH_ITEMS_QUERY = gql`
   query SEARCH_ITEMS_QUERY($searchTerm: String!) {
-    items(where: { OR: [{ title_contains: $searchTerm }, { description_contains: $searchTerm }] } {inventoryLevel) {
+    items(where: { OR: [{ title_contains: $searchTerm }, { description_contains: $searchTerm }], AND:[{inventoryLevel_gt:0}] }) {
       id
       image
       title
