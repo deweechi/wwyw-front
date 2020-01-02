@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import Item from './Item';
 import Pagination from './Pagination';
 import { perPage }  from '../config';
+import LeftArea from './LeftArea';
 
 
 const ALL_ITEMS_QUERY = gql`
-    query ALL_ITEMS_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
-        items(where: { inventoryLevel_gt: 0 },first: $first, skip: $skip, orderBy: createdAt_DESC) {
+    query ALL_ITEMS_QUERY($skip: Int = 0, $first: Int = ${perPage}, $category:String) {
+        items(where: {AND:[{inventoryLevel_gt:0},{ category: {category: $category} }]},first: $first, skip: $skip, orderBy: createdAt_DESC) {
             id
             title
             price
@@ -17,16 +18,33 @@ const ALL_ITEMS_QUERY = gql`
             image
             largeImage
             inventoryLevel
+            category {
+                category
+            }
+
         }
         
     }
 `;
 
 const Center = styled.div`
-    text-align: center;
+display: grid;
+  grid-template-columns: 20vw auto;
+    
+  align-self: left;
+  @media (max-width:400px) {
+        grid-template-columns: 1fr;
+    }
+  
+  
+`;
+const Left = styled.div`
+
 `;
 
+
 const ItemsList = styled.div`
+text-align: center;
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     
@@ -39,16 +57,17 @@ const ItemsList = styled.div`
 `;
 
 class Items extends Component {
-    render() {
+     render() {
         return (
             <Center>
+                <Left><LeftArea /></Left>
             <div>
-                <p>All items hand turned on a lathe in the USA! Items may be similar but they are all unique. That means every item is a limited quantity of 1!</p>
-                
+                              
                 <Query query={ALL_ITEMS_QUERY} 
                 fetchPolicy="network-only" 
                 variables={{
                    skip: this.props.page * perPage - perPage,
+                   
                     }}>
                     {({ data, error, loading }) => {
                         if(loading) return <p>Loading...</p>
@@ -57,6 +76,7 @@ class Items extends Component {
                             {data.items.map(item => <Item item={item} key={item.id} />)}
                         </ItemsList>
                     }}
+                    
                 </Query>
                 <Pagination page={this.props.page} />
             </div>

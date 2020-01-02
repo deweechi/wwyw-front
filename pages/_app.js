@@ -12,8 +12,9 @@ class MyApp extends App {
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx);
         }
-        //Expose the qury to the visitor
+        //Expose the query to the visitor
         pageProps.query = ctx.query;
+        pageProps.category = "Pen";
         return { pageProps };
     }
     render() {

@@ -67,10 +67,10 @@ class CheckOut extends React.Component {
     //    console.log(res.id);
     //    console.log("response:");
     //    console.log(res);
-        console.log(args.billing_address_country_code);
-        console.log(args.shipping_address_country_code);
+     //   console.log(args.billing_address_country_code);
+      //  console.log(args.shipping_address_country_code);
         if(!(args.billing_address_country_code=="US"&&args.shipping_address_country_code=="US")){
-            console.log("NOT IN THE US");
+       //     console.log("NOT IN THE US");
             alert("We are sorry, currently we can only ship to the United States.");
             Router.push({
                 pathname:'/index',

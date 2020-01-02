@@ -6,6 +6,10 @@ const NavStyles = styled.ul`
   display: flex;
   justify-self: end;
   font-size: 2rem;
+  @media (max-width: ${props => props.theme.minWidth}) {
+      font-size: 1rem;
+      
+    }
   a,
   button {
     padding: 1rem 3rem;
@@ -21,9 +25,9 @@ const NavStyles = styled.ul`
     color: ${props => props.theme.black};
     font-weight: 800;
     font-family: 'Muli';
-    @media (max-width: 700px) {
-      font-size: 10px;
-      padding: 0 10px;
+    @media (max-width: ${props => props.theme.maxWidth}) {
+      font-size: 1em;
+      padding: 1rem 1rem;
     }
     &:before {
       content: '';
